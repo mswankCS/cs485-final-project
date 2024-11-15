@@ -22,8 +22,8 @@ not the 42GB 'all_reviews.csv'. Solver being used is 'lbfgs' (Haven't experiment
 """
 
 # Load dataset
-"""Dataset not added to git just yet because it was taking ridiculously long to add (understandably).
-The file structure I have on my machine is data/weighted_score_above_08.csv and data/all_reviews/all_reviews.csv"""
+"""Dataset not added to github.
+The file structure I have on my machine is ./data/weighted_score_above_08.csv and ./data/all_reviews/all_reviews.csv"""
 data = pd.read_csv('data/weighted_score_above_08.csv', low_memory=False)
 
 # Keep only english reviews
