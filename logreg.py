@@ -29,13 +29,34 @@ data = pd.read_csv('data/weighted_score_above_08.csv', low_memory=False)
 # Keep only english reviews
 data = data[data['language'] == 'english']
 
+# append playtime at the end as an additional 'word'
+# data = data.astype({'author_playtime_at_review': '<U11'})
+
+def categorize_playtime(row):
+    # if row['author_playtime_at_review'] < 100:
+    #     return ' playtimeUnder100'
+    # elif row['author_playtime_at_review'] < 1000:
+    #     return ' playtimeUnder1000'
+    # elif row['author_playtime_at_review'] < 10000:
+    #     return ' playtimeUnder10000'
+    # elif row['author_playtime_at_review'] < 100000:
+    #     return ' playtimeUnder100000'
+    # else:
+    #     return ' playtimeOver100000'
+    if row['author_playtime_at_review'] < 1000:
+        return ' playtimeUnder1000'
+    else:
+        return ' playtimeOver1000'
+
+data['review'] = data['review'] + data.apply(categorize_playtime, axis=1)
+
 # Drop unwanted columns
 for column_name in drop_columns:
     if column_name in data.columns:
         data = data.drop(columns=column_name)
 
 # Make sure it looks right
-# print(data.head())
+print(data.head())
 # print(data.info())
 # print(data.columns)
 
